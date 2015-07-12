@@ -4,10 +4,10 @@ import Control.Applicative ( (<$>)     )
 import Text.Read           ( readMaybe )
 import Data.List
 
-data RequestType = GET
-                 | POST
-                 | PUT
-                 | DELETE
+data RequestType = Get
+                 | Post
+                 | Put
+                 | Delete
   deriving (Show, Eq)
 
 type Path = String
@@ -34,19 +34,29 @@ parseRequest items = RequestLog requestType requestPath requestDate
 
 parseRequestType :: String -> RequestType
 parseRequestType t = case t of
-  "GET"    -> GET
-  "POST"   -> POST
-  "PUT"    -> PUT
-  "DELETE" -> DELETE
+  "GET"    -> Get
+  "POST"   -> Post
+  "PUT"    -> Put
+  "DELETE" -> Delete
 
 validRequestsOnly :: [MaybeRequestLog] -> [RequestLog]
 validRequestsOnly [] = []
 validRequestsOnly (x:xs) = case x of
-                             ValidRL lm -> lm : validRequestsOnly xs
-                             InvalidRL _ -> validRequestsOnly xs
+  ValidRL lm -> lm : validRequestsOnly xs
+  InvalidRL _ -> validRequestsOnly xs
+
+
+postRequestsOnly :: [RequestLog] -> [RequestLog]
+postRequestsOnly [] = []
+postRequestsOnly (x:xs) = case x of
+                             (RequestLog Post _ _) -> x : postRequestsOnly xs
+                             _ -> postRequestsOnly xs
 
 parse :: String -> [RequestLog]
-parse f = validRequestsOnly (map parseRequestLog (filter (\n -> n /= []) (lines f)))
+parse f = validRequestsOnly (map parseRequestLog (filter (\n -> (length n) > 3) (lines f)))
+
+findPOSTRequests :: String -> [RequestLog]
+findPOSTRequests f = postRequestsOnly (parse f)
 
 testParse :: (String -> [RequestLog])
           -> Int
