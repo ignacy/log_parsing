@@ -2,6 +2,7 @@ module Log where
 
 import Control.Applicative ( (<$>)     )
 import Text.Read           ( readMaybe )
+import Data.List
 
 data RequestType = GET
                  | POST
@@ -10,8 +11,8 @@ data RequestType = GET
   deriving (Show, Eq)
 
 type Path = String
-
-data RequestLog = RequestLog RequestType Path
+type Date = String
+data RequestLog = RequestLog RequestType Path Date
   deriving (Show, Eq)
 
 data MaybeRequestLog = ValidRL RequestLog
@@ -26,9 +27,10 @@ parseRequestLog m = case lineHead of
         lineRest = drop 1 (words m)
 
 parseRequest :: [String] -> RequestLog
-parseRequest items = RequestLog requestType requestPath
+parseRequest items = RequestLog requestType requestPath requestDate
   where requestType = (parseRequestType (head items))
         requestPath = head (drop 1 items)
+        requestDate = (concat (intersperse " " (drop 5 items)))
 
 parseRequestType :: String -> RequestType
 parseRequestType t = case t of
@@ -46,8 +48,6 @@ validRequestsOnly (x:xs) = case x of
 parse :: String -> [RequestLog]
 parse f = validRequestsOnly (map parseRequestLog (filter (\n -> n /= []) (lines f)))
 
--- | @testParse p n f@ tests the log file parser @p@ by running it
---   on the first @n@ lines of file @f@.
 testParse :: (String -> [RequestLog])
           -> Int
           -> FilePath
