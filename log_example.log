@@ -48,7 +48,7 @@ ActionView::Template::Error (couldn't find file 'jquery-debounce'
     6:     <%= javascript_include_tag 'application' %>
     7:     <!-- Latest compiled and minified JavaScript -->
     8:     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    9: 
+    9:
   app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___1777999972_5186'
 
 
@@ -1062,7 +1062,7 @@ Processing by ConfigurationTestsController#create as */*
     a:visited { color: #666; }
     a:hover { color: #C52F24; }
 
-    
+
   </style>
 
   <script>
@@ -1100,14 +1100,14 @@ Processing by ConfigurationTestsController#create as */*
 <div id="container">
   <h2>undefined method `notifications_present?&#39; for nil:NilClass</h2>
 
-  
-  
+
+
 <p><code>Rails.root: /Users/ignacymoryc/code/interceptor_backend</code></p>
 
 <div id="traces">
     <a href="#" onclick="hide(&#39;Framework-Trace&#39;);hide(&#39;Full-Trace&#39;);show(&#39;Application-Trace&#39;);; return false;">Application Trace</a> |
     <a href="#" onclick="hide(&#39;Application-Trace&#39;);hide(&#39;Full-Trace&#39;);show(&#39;Framework-Trace&#39;);; return false;">Framework Trace</a> |
-    <a href="#" onclick="hide(&#39;Application-Trace&#39;);hide(&#39;Framework-Trace&#39;);show(&#39;Full-Trace&#39;);; return false;">Full Trace</a> 
+    <a href="#" onclick="hide(&#39;Application-Trace&#39;);hide(&#39;Framework-Trace&#39;);show(&#39;Full-Trace&#39;);; return false;">Full Trace</a>
 
     <div id="Application-Trace" style="display: block;">
       <pre><code></code></pre>
@@ -1200,7 +1200,7 @@ rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service&#39;
     </div>
 </div>
 
-  
+
 
 <h2 style="margin-top: 30px">Request</h2>
 <p><b>Parameters</b>:</p> <pre>{&quot;access_token&quot;=&gt;&quot;6b9d1b53dc850e7353f47102a4be4245fe765ea17b6d856e3c9a578e4f549cb0&quot;,

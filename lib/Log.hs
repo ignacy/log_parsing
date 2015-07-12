@@ -65,3 +65,5 @@ testParse :: (String -> [RequestLog])
 testParse parse n file = do
   messages <- take n . parse <$> readFile file
   mapM_ (putStrLn . show) messages
+
+main = testParse findPOSTRequests 100 "../log_example.log"
